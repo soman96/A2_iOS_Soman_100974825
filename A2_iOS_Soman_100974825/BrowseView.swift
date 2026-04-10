@@ -46,6 +46,21 @@ struct BrowseView: View {
                         .foregroundColor(.secondary)
 
                     Spacer()
+                    
+                    HStack {
+                        Button("Previous") { index -= 1 }
+                            .disabled(index == 0)
+
+                        Spacer()
+
+                        Text("\(index + 1) of \(products.count)")
+                            .foregroundColor(.secondary)
+
+                        Spacer()
+
+                        Button("Next") { index += 1 }
+                            .disabled(index == products.count - 1)
+                    }
                 }
                 .padding()
                 .navigationTitle("Browse Products")
