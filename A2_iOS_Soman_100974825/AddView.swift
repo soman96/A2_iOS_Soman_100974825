@@ -59,6 +59,6 @@ struct AddView: View {
     }
 
     private func clearForm() {
-        name = ""; description = ""; provider = ""
+        name = ""; description = ""; priceText = ""; provider = ""
     }
 }
