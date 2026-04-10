@@ -26,7 +26,7 @@ struct AddView: View {
                 Section("Product Info") {
                     TextField("Name", text: $name)
                     TextField("Description", text: $description)
-                    TextField("Price)", text: $priceText)
+                    TextField("Price", text: $priceText)
                         .keyboardType(.decimalPad)
                     TextField("Provider", text: $provider)
                 }
