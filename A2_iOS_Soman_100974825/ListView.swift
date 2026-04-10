@@ -23,9 +23,10 @@ struct ListView: View {
                         Text(product.name ?? "Unknown").font(.headline)
                         Text(product.descriptions ?? "")
                             .font(.caption).foregroundColor(.secondary)
-                        Text("$\(product.price)")
+                        Text(String(format: "$%.2f  •  %@", product.price, product.provider ?? ""))
                             .font(.caption).foregroundColor(.blue)
                     }
+                    .padding(.vertical, 2)
                 }
             }
             .navigationTitle("All Products")
