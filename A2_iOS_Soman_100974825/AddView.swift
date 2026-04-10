@@ -15,6 +15,10 @@ struct AddView: View {
     @State private var priceText = ""
     @State private var provider = ""
 
+    var isValid: Bool {
+        !name.isEmpty && Double(priceText) != nil
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -22,25 +26,27 @@ struct AddView: View {
                     TextField("Name", text: $name)
                     TextField("Description", text: $description)
                     TextField("Price)", text: $priceText)
+                        .keyboardType(.decimalPad)
                     TextField("Provider", text: $provider)
                 }
-                
+
                 Section {
                     Button("Save Product") {
                         saveProduct()
                     }
+                    .disabled(!isValid)
                 }
             }
             .navigationTitle("Add Product")
         }
     }
-    
+
     private func saveProduct() {
-            let p = Product(context: context)
-            p.name = name
-            p.descriptions = description
-            p.price = Double(priceText) ?? 0
-            p.provider = provider
-            try? context.save()
-        }
+        let p = Product(context: context)
+        p.name = name
+        p.descriptions = description
+        p.price = Double(priceText) ?? 0
+        p.provider = provider
+        try? context.save()
+    }
 }
