@@ -24,8 +24,23 @@ struct AddView: View {
                     TextField("Price)", text: $priceText)
                     TextField("Provider", text: $provider)
                 }
+                
+                Section {
+                    Button("Save Product") {
+                        saveProduct()
+                    }
+                }
             }
             .navigationTitle("Add Product")
         }
     }
+    
+    private func saveProduct() {
+            let p = Product(context: context)
+            p.name = name
+            p.descriptions = description
+            p.price = Double(priceText) ?? 0
+            p.provider = provider
+            try? context.save()
+        }
 }
