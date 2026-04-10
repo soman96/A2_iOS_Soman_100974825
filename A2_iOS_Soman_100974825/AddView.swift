@@ -14,6 +14,7 @@ struct AddView: View {
     @State private var description = ""
     @State private var priceText = ""
     @State private var provider = ""
+    @State private var showConfirmation = false
 
     var isValid: Bool {
         !name.isEmpty && Double(priceText) != nil
@@ -38,15 +39,26 @@ struct AddView: View {
                 }
             }
             .navigationTitle("Add Product")
+            .alert("Saved!", isPresented: $showConfirmation) {
+                Button("OK") { clearForm() }
+            } message: {
+                Text("\"\(name)\" was added successfully.")
+            }
         }
     }
 
     private func saveProduct() {
         let p = Product(context: context)
+        p.id = UUID()
         p.name = name
         p.descriptions = description
         p.price = Double(priceText) ?? 0
         p.provider = provider
         try? context.save()
+        showConfirmation = true
+    }
+
+    private func clearForm() {
+        name = ""; description = ""; provider = ""
     }
 }
