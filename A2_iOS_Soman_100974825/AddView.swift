@@ -17,7 +17,7 @@ struct AddView: View {
     @State private var showConfirmation = false
 
     var isValid: Bool {
-        !name.isEmpty && Double(priceText) != nil
+        !name.isEmpty && !description.isEmpty && !provider.isEmpty && Double(priceText) != nil
     }
 
     var body: some View {
