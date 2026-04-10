@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ProductListView: View {
+struct ListView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Product.name, ascending: true)],
