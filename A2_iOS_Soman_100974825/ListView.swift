@@ -19,7 +19,13 @@ struct ListView: View {
         NavigationStack {
             List {
                 ForEach(products, id: \.id) { product in
-                    Text(product.name ?? "Unknown")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(product.name ?? "Unknown").font(.headline)
+                        Text(product.descriptions ?? "")
+                            .font(.caption).foregroundColor(.secondary)
+                        Text("$\(product.price)")
+                            .font(.caption).foregroundColor(.blue)
+                    }
                 }
             }
             .navigationTitle("All Products")
