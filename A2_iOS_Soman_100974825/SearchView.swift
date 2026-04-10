@@ -32,7 +32,14 @@ struct SearchView: View {
                         .foregroundColor(.secondary)
                 } else {
                     ForEach(results, id: \.id) { product in
-                        Text(product.name ?? "")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(product.name ?? "").font(.headline)
+                            Text(product.descriptions ?? "")
+                                .font(.caption).foregroundColor(.secondary).lineLimit(2)
+                            Text(String(format: "$%.2f  •  %@", product.price, product.provider ?? ""))
+                                .font(.caption).foregroundColor(.blue)
+                        }
+                        .padding(.vertical, 2)
                     }
                 }
             }
